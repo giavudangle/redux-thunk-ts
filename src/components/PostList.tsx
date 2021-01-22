@@ -6,6 +6,7 @@ import {AnyAction, bindActionCreators, Dispatch} from 'redux';
 import { FETCH_POSTS, IPost, PostDispatchTypes } from '../actions/PostActions/types';
 import { RootStore } from '../store';
 import { GetPosts } from '../actions/PostActions';
+import UserHeader from './UserHeader';
 
 interface IDispatchProps {
     fetchListPosts : () => void
@@ -65,6 +66,8 @@ class PostList extends React.Component<Props>{
         return(
             <div className='ui relaxed divided list'>
                 {this.renderList()}
+                <UserHeader userId={1}/>
+
             </div>
         )
     }

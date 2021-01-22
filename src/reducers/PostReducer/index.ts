@@ -1,5 +1,5 @@
 import React from 'react'
-import { FETCH_POSTS, IPost, PostDispatchTypes } from '../actions/PostActions/types';
+import { FETCH_POSTS, IPost, PostDispatchTypes } from '../../actions/PostActions/types';
 
 interface IDefaultPost {
     posts:IPost[]
