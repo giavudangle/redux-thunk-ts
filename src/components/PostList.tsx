@@ -54,6 +54,9 @@ class PostList extends React.Component<Props>{
                             <h2>{post.title}</h2>
                             <p>{post.body}</p>
                         </div>
+                        <UserHeader userId={1}/>
+
+
                     </div>
                 </div>
             )
@@ -66,7 +69,6 @@ class PostList extends React.Component<Props>{
         return(
             <div className='ui relaxed divided list'>
                 {this.renderList()}
-                <UserHeader userId={1}/>
 
             </div>
         )

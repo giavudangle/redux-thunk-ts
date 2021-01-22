@@ -8,19 +8,21 @@ import { IUser, IUserState } from '../actions/UserActions/type'
 
 
 interface IDispatchProps{
-    getUserById : (id : string) => void,
+    getUserById : (id : number) => void,
     // (dispatch: Dispatch<UserDispatchTypes>) 
     // => Promise<void>' is not assignable to type 'void'.t
     getAllUsers : () => void
 }
 
 interface IStateProps {
-    singleUser? : IUser | null 
+    singleUser? : IUser | null ,
+    users : IUser[]
 }
 
 const mapStateToProps = (state : IUserState) : IStateProps => {
     return {
-        singleUser : state.singleUser
+        singleUser : state.singleUser,
+        users:state.users
     }
 }
 
@@ -39,14 +41,17 @@ type ParentPassProps = {
 type Props = ConnectedProps<typeof connector> & ParentPassProps ;
 
 class UserHeader extends Component<Props> {
-    state = {}
+    componentDidMount(){
+        //this.props.getUserById(this.props.userId)
+        this.props.getAllUsers()
+    }
 
     render() {
-        console.log(this.props);
-        
+       //const user : IUser = 
+
         return (
-            <div>
-                USers
+            <div className='header'>
+                {this.props.singleUser?.name}
             </div>
         )
     }
