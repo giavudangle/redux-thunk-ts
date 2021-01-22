@@ -12,7 +12,7 @@ const userReducer = (state = defaultState,action : UserDispatchTypes):IUserState
     switch(action.type){
         case FETCH_USERS:            
             return {...state,users:action.payload}
-        case FETCH_SINGLE_USER:
+        case FETCH_SINGLE_USER:            
             return {...state,singleUser:action.payload}
         default:
             return state;

@@ -3,6 +3,7 @@ import {bindActionCreators, Dispatch} from 'redux'
 import {connect, ConnectedProps} from 'react-redux'
 import {FetchListUsers, GetUserById} from '../actions/UserActions'
 import { IUser, IUserState } from '../actions/UserActions/type'
+import { RootStore } from '../store'
 
 
 
@@ -19,10 +20,10 @@ interface IStateProps {
     users : IUser[]
 }
 
-const mapStateToProps = (state : IUserState) : IStateProps => {
+const mapStateToProps = (state : RootStore) : IStateProps => {
     return {
-        singleUser : state.singleUser,
-        users:state.users
+        singleUser : state.usersReducer.singleUser,
+        users:state.usersReducer.users
     }
 }
 
@@ -42,16 +43,17 @@ type Props = ConnectedProps<typeof connector> & ParentPassProps ;
 
 class UserHeader extends Component<Props> {
     componentDidMount(){
-        //this.props.getUserById(this.props.userId)
-        this.props.getAllUsers()
+        this.props.getAllUsers();
     }
 
     render() {
-       //const user : IUser = 
-
+        const user  = this.props.users.find((user) => user.id === this.props.userId)
+        if(user === null) {
+            return null;
+        }
         return (
             <div className='header'>
-                {this.props.singleUser?.name}
+                {user?.name}
             </div>
         )
     }
